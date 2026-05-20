@@ -1,0 +1,37 @@
+[
+    {
+        "tipo": "receita",
+        "valor": 1000.0,
+        "descricao": ""
+    },
+    {
+        "tipo": "receita",
+        "valor": 200.0,
+        "descricao": ""
+    },
+    {
+        "tipo": "receita",
+        "valor": 503.0,
+        "descricao": ""
+    },
+    {
+        "tipo": "despesa",
+        "despesa": 200.0,
+        "descricao": "mercado"
+    },
+    {
+        "tipo": "despesa",
+        "despesa": 50.0,
+        "descricao": "almoço"
+    },
+    {
+        "tipo": "receita",
+        "valor": 1000.0,
+        "descricao": ""
+    },
+    {
+        "tipo": "despesa",
+        "despesa": 200.0,
+        "descricao": "videogame"
+    }
+]
