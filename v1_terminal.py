@@ -56,9 +56,9 @@ def Saldo():
 def Historico():
     for i, t in enumerate(transacoes, start=1):
         if t['tipo'] == "receita":
-            print(f"{i}. receita: +{t['valor']}")
+            print(f"{i}. receita  | +R${t['valor']:.2f}")
         elif t['tipo'] == "despesa":
-            print(f"{i}. despesa: {t['valor']} | motivo: {t['descricao']}")
+            print(f"{i}. despesa | -R${t['valor']:.2f} | motivo: {t['descricao']}")
     print()
 
 def Resumo():
@@ -83,13 +83,18 @@ def Remover():
             print("Digite o valor e o motivo da despesa que deseja remover")
             v=float(input("Valor:"))
             m=input("Motivo:")
+            encontrado = False
             for t in transacoes:
                 if t['tipo']=='despesa' and t['valor']==v and t['descricao']==m:
                     global saldo
                     saldo+=t['valor']
                     transacoes.remove(t)
                     print("Despesa removida com sucesso\n")
+                    encontrado = True
                     break
+            
+            if not encontrado:
+                print("Despesa não encontrada.\n")
             break
         except ValueError:
             print("Valor inválido. Por favor, digite um número.\n")

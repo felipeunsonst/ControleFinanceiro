@@ -16,12 +16,12 @@
     },
     {
         "tipo": "despesa",
-        "despesa": 200.0,
+        "valor": 200.0,
         "descricao": "mercado"
     },
     {
         "tipo": "despesa",
-        "despesa": 50.0,
+        "valor": 50.0,
         "descricao": "almoço"
     },
     {
@@ -31,7 +31,7 @@
     },
     {
         "tipo": "despesa",
-        "despesa": 200.0,
+        "valor": 200.0,
         "descricao": "videogame"
     }
 ]
