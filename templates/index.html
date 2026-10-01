@@ -4,7 +4,7 @@
     </header>
 
     <div><!--div para saldo e botões-->
-        <h3 style="text-align: center;">Saldo Atual: XXXX</h3>
+        <h3 style="text-align: center;">Saldo Atual: {{ saldo }}</h3>
         <br>
         <button style="color: green; text-align: center; display: block; margin: 0 auto;">Adicionar Receita</button>
         <button style="color: red; text-align: center; display: block; margin: 0 auto;">Adicionar Despesa</button>
@@ -12,7 +12,17 @@
 
     <div><!--div para tabela de receitas e despesas-->
         <h2 style="text-align: center;">Histórico de Transações</h2>
-        <h3 style="text-align:center">(+)Receita-----------XXXX:</h3>
-        <h3 style="text-align:center">(-)Despesa----------XXXX:</h3>
+        <h3 style="text-align:center">(+)Receita-----------{{ receitas }}:</h3>
+        {% for t in transacoes %}
+            {% if t.tipo == "receita" %}
+                <p style="color: green; text-align: center;">+ {{ t.valor }}</p>
+            {% endif %}
+        {% endfor %}
+        <h3 style="text-align:center">(-)Despesa----------{{ despesas }}:</h3>
+        {% for t in transacoes %}
+            {% if t.tipo == "despesa" %}
+                <p style="color: red; text-align:center;">+ {{ t.valor }}, {{t.descricao}}</p>
+            {% endif %}
+        {% endfor %}
     </div>
 </body>

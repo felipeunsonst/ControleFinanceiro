@@ -1,3 +1,5 @@
+## essa é a primeira versão do projeto, comecei apenas por esse codigo em python onde tudo é feito pelo terminal
+
 import json
 
 with open('dados.json', "r", encoding='utf-8') as arquivo:
