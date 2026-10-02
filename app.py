@@ -1,4 +1,4 @@
-from flask import Flask, render_template
+from flask import Flask, request, render_template, redirect
 import json
 
 app = Flask(__name__)
@@ -21,6 +21,21 @@ def home():
     return render_template("index.html", transacoes=transacoes, saldo=saldo, receitas=receitas, despesas=despesas)
                         ##o "transações" da esquerda que conta no HTML##
 
-    
+@app.route("/adicionar_receita", methods=["POST"])
+def adicionar():
+    with open('dados.json', "r", encoding='utf-8') as arquivo:
+        transacoes = json.load(arquivo)
 
+    valor = float(request.form['valor'])
+    transacoes.append({
+        "tipo": "receita",
+        "valor": valor,
+        "descricao": ""
+    })
+
+    with open('dados.json', "w", encoding='utf-8') as arquivo:
+            json.dump(transacoes, arquivo, ensure_ascii=False, indent=4)
+    
+    return redirect("/")
+    
 app.run(debug=True)

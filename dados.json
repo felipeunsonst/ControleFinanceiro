@@ -33,5 +33,15 @@
         "tipo": "despesa",
         "valor": 200.0,
         "descricao": "videogame"
+    },
+    {
+        "tipo": "receita",
+        "valor": 50.0,
+        "descricao": ""
+    },
+    {
+        "tipo": "receita",
+        "valor": 50.0,
+        "descricao": ""
     }
 ]

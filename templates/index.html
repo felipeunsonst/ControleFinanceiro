@@ -6,7 +6,12 @@
     <div><!--div para saldo e botões-->
         <h3 style="text-align: center;">Saldo Atual: {{ saldo }}</h3>
         <br>
-        <button style="color: green; text-align: center; display: block; margin: 0 auto;">Adicionar Receita</button>
+        <form method="post" action="/adicionar_receita">
+            <input name="valor" type="number" text-align:center>
+            <input type="submit" style="color: green; text-align: center; display: block; margin: 0 auto" value="Adicionar receita"/>
+        </form>
+        
+        <!--<button style="color: green; text-align: center; display: block; margin: 0 auto;">Adicionar Receita</button>-->
         <button style="color: red; text-align: center; display: block; margin: 0 auto;">Adicionar Despesa</button>
     </div>
 
@@ -21,7 +26,7 @@
         <h3 style="text-align:center">(-)Despesa----------{{ despesas }}:</h3>
         {% for t in transacoes %}
             {% if t.tipo == "despesa" %}
-                <p style="color: red; text-align:center;">+ {{ t.valor }}, {{t.descricao}}</p>
+                <p style="color: red; text-align:center;">- {{ t.valor }}, {{t.descricao}}</p>
             {% endif %}
         {% endfor %}
     </div>
