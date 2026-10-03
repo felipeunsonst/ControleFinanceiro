@@ -6,13 +6,17 @@
     <div><!--div para saldo e botões-->
         <h3 style="text-align: center;">Saldo Atual: {{ saldo }}</h3>
         <br>
-        <form method="post" action="/adicionar_receita">
-            <input name="valor" type="number" text-align:center>
-            <input type="submit" style="color: green; text-align: center; display: block; margin: 0 auto" value="Adicionar receita"/>
+        <form method="post" action="/adicionar_receita" style="text-align:center">
+            <input name="valor" type="number" required placeholder ="Valor: R$">
+            <input type="submit" style="color: green; text-align: center; display: block; margin: 0 auto" value = "Adicionar receita"/>
         </form>
-        
         <!--<button style="color: green; text-align: center; display: block; margin: 0 auto;">Adicionar Receita</button>-->
-        <button style="color: red; text-align: center; display: block; margin: 0 auto;">Adicionar Despesa</button>
+        <!--<button style="color: red; text-align: center; display: block; margin: 0 auto;">Adicionar Despesa</button>-->
+        <form method="post" action="/adicionar_despesa" style="text-align:center">
+            <input name="valor" type="number" required placeholder="Valor: R$">
+            <input name="descricao" type="text" required placeholder="Ex: Mercado, Luz...">
+            <input type="submit" style="color: red; text-align: center; display: block; margin: 0 auto" value ="Adicionar despesa"/>
+        </form>
     </div>
 
     <div><!--div para tabela de receitas e despesas-->

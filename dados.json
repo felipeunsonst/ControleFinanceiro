@@ -43,5 +43,15 @@
         "tipo": "receita",
         "valor": 50.0,
         "descricao": ""
+    },
+    {
+        "tipo": "receita",
+        "valor": 100.0,
+        "descricao": ""
+    },
+    {
+        "tipo": "despesa",
+        "valor": 300.0,
+        "descricao": "mercado"
     }
 ]

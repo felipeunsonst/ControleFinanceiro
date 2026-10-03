@@ -22,7 +22,7 @@ def home():
                         ##o "transações" da esquerda que conta no HTML##
 
 @app.route("/adicionar_receita", methods=["POST"])
-def adicionar():
+def adicionarReceita():
     with open('dados.json', "r", encoding='utf-8') as arquivo:
         transacoes = json.load(arquivo)
 
@@ -37,5 +37,23 @@ def adicionar():
             json.dump(transacoes, arquivo, ensure_ascii=False, indent=4)
     
     return redirect("/")
+
+@app.route("/adicionar_despesa", methods=['POST'])
+def adicionarDespesa():
+    with open('dados.json', 'r', encoding='utf-8') as arquivo:
+        transacoes = json.load(arquivo)
+    valor= float(request.form['valor'])
+    descricao = request.form['descricao']
+    transacoes.append({
+        "tipo" : "despesa",
+        "valor" : valor,
+        "descricao" : descricao
+    })
+
+    with open('dados.json', "w", encoding='utf-8') as arquivo:
+                json.dump(transacoes, arquivo, ensure_ascii=False, indent=4)
+
+    return redirect("/")
+    
     
 app.run(debug=True)
