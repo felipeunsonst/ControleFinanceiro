@@ -54,6 +54,19 @@ def adicionarDespesa():
                 json.dump(transacoes, arquivo, ensure_ascii=False, indent=4)
 
     return redirect("/")
+
+@app.route("/remover", methods=['POST'])
+def remover():
+    with open('dados.json', 'r', encoding='utf-8')as arquivo:
+        transacoes=json.load(arquivo)
+    posicao = int(request.form['posicao'])
+    del transacoes[posicao]
+
+    with open('dados.json', "w", encoding='utf-8') as arquivo:
+        json.dump(transacoes, arquivo, ensure_ascii=False, indent=4)
+    return redirect("/")
+     
+    
     
     
 app.run(debug=True)

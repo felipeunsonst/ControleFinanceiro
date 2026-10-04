@@ -24,13 +24,25 @@
         <h3 style="text-align:center">(+)Receita-----------{{ receitas }}:</h3>
         {% for t in transacoes %}
             {% if t.tipo == "receita" %}
-                <p style="color: green; text-align: center;">+ {{ t.valor }}</p>
+                <div>
+                    <p style="color: green; text-align: center;">{{ loop.index0 }}. + {{ t.valor }}</p>
+                    <form method="post" action="/remover" style="display:inline;">
+                        <input type="hidden" name="posicao" value="{{ loop.index0 }}"><!--o value no tipo hidden é o que sera enviado ao python-->
+                        <input type="submit" value="R">
+                    </form>
+                </div>
             {% endif %}
         {% endfor %}
         <h3 style="text-align:center">(-)Despesa----------{{ despesas }}:</h3>
         {% for t in transacoes %}
             {% if t.tipo == "despesa" %}
-                <p style="color: red; text-align:center;">- {{ t.valor }}, {{t.descricao}}</p>
+                <div>
+                    <p style="color: red; text-align:center;">{{ loop.index0 }}. - {{ t.valor }}, {{t.descricao}}</p>
+                    <form method="post" action="/remover" style="display:inline;">
+                        <input type="hidden" name="posicao" value="{{ loop.index0 }}">
+                        <input type="submit" value="R">
+                    </form>
+                </div>
             {% endif %}
         {% endfor %}
     </div>

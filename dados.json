@@ -20,11 +20,6 @@
         "descricao": "mercado"
     },
     {
-        "tipo": "despesa",
-        "valor": 50.0,
-        "descricao": "almoço"
-    },
-    {
         "tipo": "receita",
         "valor": 1000.0,
         "descricao": ""
@@ -51,7 +46,7 @@
     },
     {
         "tipo": "despesa",
-        "valor": 300.0,
-        "descricao": "mercado"
+        "valor": 68.0,
+        "descricao": "jogo"
     }
 ]
