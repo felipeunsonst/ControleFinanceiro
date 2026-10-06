@@ -5,8 +5,7 @@ app = Flask(__name__)
 
 @app.route("/")
 def home():
-    with open('dados.json', "r", encoding='utf-8') as arquivo:
-        transacoes = json.load(arquivo)
+    transacoes=lerTransacoes()
 
     saldo = 0
     despesas =0
@@ -23,8 +22,7 @@ def home():
 
 @app.route("/adicionar_receita", methods=["POST"])
 def adicionarReceita():
-    with open('dados.json', "r", encoding='utf-8') as arquivo:
-        transacoes = json.load(arquivo)
+    transacoes=lerTransacoes()
 
     valor = float(request.form['valor'])
     transacoes.append({
@@ -33,15 +31,14 @@ def adicionarReceita():
         "descricao": ""
     })
 
-    with open('dados.json', "w", encoding='utf-8') as arquivo:
-            json.dump(transacoes, arquivo, ensure_ascii=False, indent=4)
+    salvarTransacoes(transacoes)
     
     return redirect("/")
 
 @app.route("/adicionar_despesa", methods=['POST'])
 def adicionarDespesa():
-    with open('dados.json', 'r', encoding='utf-8') as arquivo:
-        transacoes = json.load(arquivo)
+    transacoes=lerTransacoes()
+
     valor= float(request.form['valor'])
     descricao = request.form['descricao']
     transacoes.append({
@@ -50,22 +47,29 @@ def adicionarDespesa():
         "descricao" : descricao
     })
 
-    with open('dados.json', "w", encoding='utf-8') as arquivo:
-                json.dump(transacoes, arquivo, ensure_ascii=False, indent=4)
+    salvarTransacoes(transacoes)
 
     return redirect("/")
 
 @app.route("/remover", methods=['POST'])
 def remover():
-    with open('dados.json', 'r', encoding='utf-8')as arquivo:
-        transacoes=json.load(arquivo)
+    transacoes=lerTransacoes()
+
     posicao = int(request.form['posicao'])
     del transacoes[posicao]
 
-    with open('dados.json', "w", encoding='utf-8') as arquivo:
-        json.dump(transacoes, arquivo, ensure_ascii=False, indent=4)
+    salvarTransacoes(transacoes)
     return redirect("/")
      
+def lerTransacoes():
+    with open('dados.json', 'r', encoding='utf-8') as arquivo:
+        transacoes = json.load(arquivo)
+
+    return transacoes
+
+def salvarTransacoes(transacoes):
+    with open('dados.json', 'w', encoding='utf-8') as arquivo:
+        json.dump(transacoes, arquivo, ensure_ascii=False, indent=4)
     
     
     

@@ -45,8 +45,13 @@
         "descricao": ""
     },
     {
+        "tipo": "receita",
+        "valor": 600.0,
+        "descricao": ""
+    },
+    {
         "tipo": "despesa",
-        "valor": 68.0,
-        "descricao": "jogo"
+        "valor": 250.0,
+        "descricao": "agua"
     }
 ]
