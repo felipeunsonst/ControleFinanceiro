@@ -1,0 +1,57 @@
+[
+    {
+        "tipo": "receita",
+        "valor": 1000.0,
+        "descricao": ""
+    },
+    {
+        "tipo": "receita",
+        "valor": 200.0,
+        "descricao": ""
+    },
+    {
+        "tipo": "receita",
+        "valor": 503.0,
+        "descricao": ""
+    },
+    {
+        "tipo": "despesa",
+        "valor": 200.0,
+        "descricao": "mercado"
+    },
+    {
+        "tipo": "receita",
+        "valor": 1000.0,
+        "descricao": ""
+    },
+    {
+        "tipo": "despesa",
+        "valor": 200.0,
+        "descricao": "videogame"
+    },
+    {
+        "tipo": "receita",
+        "valor": 50.0,
+        "descricao": ""
+    },
+    {
+        "tipo": "receita",
+        "valor": 50.0,
+        "descricao": ""
+    },
+    {
+        "tipo": "receita",
+        "valor": 100.0,
+        "descricao": ""
+    },
+    {
+        "tipo": "receita",
+        "valor": 600.0,
+        "descricao": ""
+    },
+    {
+        "tipo": "despesa",
+        "valor": 250.0,
+        "descricao": "agua"
+    }
+]

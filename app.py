@@ -1,11 +1,28 @@
 from flask import Flask, request, render_template, redirect
 import json
+import sqlite3
 
 app = Flask(__name__)
 
+def criarTabela():
+    conexao = sqlite3.connect("financeiro.db")
+    cursor=conexao.cursor()
+    cursor.execute("" \
+        "CREATE TABLE IF NOT EXISTS transacoes(" 
+        "id INTEGER PRIMARY KEY AUTOINCREMENT," 
+        "tipo TEXT," 
+        "valor REAL," 
+        "descricao TEXT" 
+        ")" 
+    "")
+    conexao.commit()
+    conexao.close()
+
+criarTabela()
+
 @app.route("/")
 def home():
-    transacoes=lerTransacoes()
+    transacoes = lerTransacoesSQL()
 
     saldo = 0
     despesas =0
@@ -21,56 +38,57 @@ def home():
                         ##o "transações" da esquerda que conta no HTML##
 
 @app.route("/adicionar_receita", methods=["POST"])
-def adicionarReceita():
-    transacoes=lerTransacoes()
+def adicionarReceitaSQL():
+    conexao = sqlite3.connect("financeiro.db")
+    cursor = conexao.cursor()
 
     valor = float(request.form['valor'])
-    transacoes.append({
-        "tipo": "receita",
-        "valor": valor,
-        "descricao": ""
-    })
 
-    salvarTransacoes(transacoes)
-    
+    cursor.execute("INSERT INTO transacoes (tipo, valor, descricao) VALUES (?,?,?)", ("receita", valor, ""))
+    conexao.commit()
+    conexao.close()
+
     return redirect("/")
+
 
 @app.route("/adicionar_despesa", methods=['POST'])
-def adicionarDespesa():
-    transacoes=lerTransacoes()
+def adicionarDespesaSQL():
+    conexao=sqlite3.connect("financeiro.db")
+    cursor=conexao.cursor()
 
-    valor= float(request.form['valor'])
-    descricao = request.form['descricao']
-    transacoes.append({
-        "tipo" : "despesa",
-        "valor" : valor,
-        "descricao" : descricao
-    })
+    valor = float(request.form['valor'])
+    descricao=request.form['descricao']
 
-    salvarTransacoes(transacoes)
+    cursor.execute("INSERT INTO transacoes (tipo, valor, descricao) VALUES (?,?,?)", ("despesa", valor, descricao ))
+    conexao.commit()
+    conexao.close()
 
     return redirect("/")
+
 
 @app.route("/remover", methods=['POST'])
-def remover():
-    transacoes=lerTransacoes()
+def removerSQL():
+    conexao=sqlite3.connect("financeiro.db")
+    cursor=conexao.cursor()
 
-    posicao = int(request.form['posicao'])
-    del transacoes[posicao]
+    id_transacao = int(request.form['id'])
 
-    salvarTransacoes(transacoes)
+    cursor.execute("DELETE FROM transacoes WHERE id = ?", (id_transacao,))
+    conexao.commit()
+    conexao.close()
     return redirect("/")
+
      
-def lerTransacoes():
-    with open('dados.json', 'r', encoding='utf-8') as arquivo:
-        transacoes = json.load(arquivo)
+def lerTransacoesSQL():
+    conexao=sqlite3.connect("financeiro.db")
+    conexao.row_factory = sqlite3.Row
+    cursor = conexao.cursor()
 
-    return transacoes
+    cursor.execute("SELECT * FROM transacoes")
+    trans = cursor.fetchall()
 
-def salvarTransacoes(transacoes):
-    with open('dados.json', 'w', encoding='utf-8') as arquivo:
-        json.dump(transacoes, arquivo, ensure_ascii=False, indent=4)
-    
+    conexao.close()
+    return trans    
     
     
 app.run(debug=True)

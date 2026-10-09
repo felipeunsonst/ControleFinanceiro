@@ -1,0 +1,41 @@
+# Versão 2: Web com Flask e JSON
+
+Segunda etapa: levar o controle financeiro do terminal para o navegador, ainda guardando os dados em um arquivo JSON.
+
+## Por que esta pasta existe
+
+Foi aqui que aprendi a integrar Python com HTML: rotas do Flask, `render_template`, templates com Jinja, formulários com `POST` e `redirect`. Está preservada como registro dessa etapa.
+
+## Funcionalidades
+
+- Mostrar saldo, total de receitas e total de despesas
+- Histórico de transações
+- Adicionar receitas e despesas por formulários
+- Remover transações
+
+## Como executar
+
+```bash
+cd versao_json
+pip install flask
+python app.py
+```
+
+Acesse `http://127.0.0.1:5000`.
+
+## Como funciona
+
+- As funções `lerTransacoes()` e `salvarTransacoes()` concentram o acesso ao `dados.json`.
+- Para adicionar ou remover, a rota **lê a lista inteira**, altera e **regrava o arquivo inteiro**.
+- A remoção usa a **posição na lista** (`loop.index0` no template), enviada por um campo `hidden`.
+
+## Limitações conhecidas
+
+- A posição na lista não é um identificador estável: depende da ordem atual dos itens.
+- Regravar o arquivo inteiro a cada alteração não escala bem.
+
+Foram os motivos para migrar para um banco de dados.
+
+## Próxima etapa
+
+[Estudo de SQLite](../estudo_sqlite/) e, depois, a versão atual na raiz do repositório.

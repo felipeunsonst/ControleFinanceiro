@@ -18,7 +18,7 @@ cursor.execute(""
 ##cursor.execute("DELETE FROM transacoes WHERE id = 2")
 conexao.commit()
 
-cursor.execute("SELECT * FROM transacoes WHERE tipo = ?",  ("despesa",))
+cursor.execute("SELECT * FROM transacoes WHERE valor = ?",  ("1500",))
 print(cursor.fetchall())
 
 conexao.close()
