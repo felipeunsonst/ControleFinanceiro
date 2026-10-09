@@ -18,7 +18,7 @@ Foi aqui que aprendi a integrar Python com HTML: rotas do Flask, `render_templat
 ```bash
 cd versao_json
 pip install flask
-python app.py
+python versao_json.py
 ```
 
 Acesse `http://127.0.0.1:5000`.
